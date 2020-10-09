@@ -14,6 +14,9 @@ from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 import numpy as np;
 
+import seaborn as sn
+import matplotlib.pyplot as plt
+
 '''
 w1X = [0, 0, 2, 3, 3, 3];
 w1Y = [0, 1, 2, 1, 2, 3];
@@ -65,8 +68,11 @@ printMeanNCov(w2)
 
 # quick way to do it, 
 print('covairance is \n', np.cov(w1[:,0] ,w1[:,1]))  # answer 
-print('covairance is \n', (np.cov(w2[:,0] ,w2[:,1], bias =True)) * 9 / 8) 
+print('covairance is \n', (np.cov(w2[:,0] ,w2[:,1], bias =True)) * 9 / 8)  # verified the use of 
 
 
+#sn.heatmap(np.cov(w1[:,0] ,w1[:,1]), annot=True, fmt='g')
+sn.heatmap(np.cov(w2[:,0] ,w2[:,1]), annot=True, fmt='g')
+plt.show()
 
 
