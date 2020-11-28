@@ -70,6 +70,8 @@ print(sigma0)
 #     print('本次', sum1/10)
 # EMalgorithm(processedData, miu0,sigma0, 1)        
 
+ https://joon3216.github.io/research_materials/2019/em_imputation.html
+
 def impute_em(X, max_iter = 3000, eps = 1e-08):
     '''(np.array, int, number) -> {str: np.array or int}
     
@@ -115,18 +117,13 @@ def impute_em(X, max_iter = 3000, eps = 1e-08):
                 S_MO = S[np.ix_(M_i, O_i)]
                 S_OM = S_MO.T
                 S_OO = S[np.ix_(O_i, O_i)]
-                Mu_tilde[i] = Mu[np.ix_(M_i)] +\
-                    S_MO @ np.linalg.inv(S_OO) @\
-                    (X_tilde[i, O_i] - Mu[np.ix_(O_i)])
+                Mu_tilde[i] = Mu[np.ix_(M_i)] + S_MO @ np.linalg.inv(S_OO) @(X_tilde[i, O_i] - Mu[np.ix_(O_i)])
                 X_tilde[i, M_i] = Mu_tilde[i]
                 S_MM_O = S_MM - S_MO @ np.linalg.inv(S_OO) @ S_OM
                 S_tilde[i][np.ix_(M_i, M_i)] = S_MM_O
         Mu_new = np.mean(X_tilde, axis = 0)
-        S_new = np.cov(X_tilde.T, bias = 1) +\
-            reduce(np.add, S_tilde.values()) / nr
-        no_conv =\
-            np.linalg.norm(Mu - Mu_new) >= eps or\
-            np.linalg.norm(S - S_new, ord = 2) >= eps
+        S_new = np.cov(X_tilde.T, bias = 1) + reduce(np.add, S_tilde.values()) / nr
+        no_conv = np.linalg.norm(Mu - Mu_new) >= eps or np.linalg.norm(S - S_new, ord = 2) >= eps
         Mu = Mu_new
         S = S_new
         iteration += 1
