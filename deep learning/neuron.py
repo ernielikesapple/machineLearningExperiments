@@ -8,9 +8,12 @@ Created on Wed Dec 23 14:56:42 2020
 
 #the basic comutational units in deep neual network
 
+#receive certain inputs and modulate them(sum up) then use an activation function
+
+
 import math
 
-def sigmoid(x):
+def sigmoid(x):                 # the specific 
     y = 1.0 / (1 + math.exp(-x))
     return y
  
