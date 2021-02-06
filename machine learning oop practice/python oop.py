@@ -13,11 +13,17 @@ class XuLie:
         self.classProperty2 = property2
         self.classProperty3 = property3    
         
-
+    def thisIsAFunction(self):
+        return '{} + {}'.format(self.classProperty1, self.classProperty2)
 
 
 xuLieInstance = XuLie('passed string', 123, 'another string')
 
-
-
 print(xuLieInstance.classProperty1)
+print(xuLieInstance.thisIsAFunction())
+
+'''
+XuLie.thisIsAFunction(xuLieInstance)
+# is the same with the line 
+xuLieInstance.thisIsAFunction() # this pass xuLieInstance to the function directly
+'''
