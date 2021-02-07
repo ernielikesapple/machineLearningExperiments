@@ -25,6 +25,12 @@ class XuLie:
 
     def printClassName(self):
         return print("print self.classPropertiesName", self.classPropertiesName, "  ","print Class.classPropertiesName", XuLie.classPropertiesName)
+    
+    @classmethod         # another way to create the class
+    def alternativeClassInstructor(cls, p1):
+        property1, property2, property3 = p1.split('@')
+        return cls(property1, property2, property3)
+        
 
 xuLieInstance = XuLie('passed string', 123, 'another string')
 
@@ -42,4 +48,7 @@ xuLieInstance.classPropertiesName = "new name"  #notice the class instance is no
 XuLie.printClassName(xuLieInstance)
 
 xuLieInstance2 = XuLie('passed string', 123, 'another string')
+print("we have sum up : ", XuLie.classCounter, "classes instance have been instantiated")
+
+newXuLieInstance = XuLie.alternativeClassInstructor("sad@aaa@bbb")
 print("we have sum up : ", XuLie.classCounter, "classes instance have been instantiated")
