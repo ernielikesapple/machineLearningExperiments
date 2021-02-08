@@ -8,7 +8,6 @@ Created on Fri Feb  5 21:37:02 2021
 
 class XuLie:
     
-    
     classPropertiesName = "default name"
     
     classCounter = 0  
@@ -30,6 +29,11 @@ class XuLie:
     def alternativeClassInstructor(cls, p1):
         property1, property2, property3 = p1.split('@')
         return cls(property1, property2, property3)
+    
+    
+    @staticmethod   # has a logical connection but it doesn't depond on any class or instance variables
+    def thisIsAstaticMethod(FirstParameterDontNeedToBeClassOrInstance):
+        return print(FirstParameterDontNeedToBeClassOrInstance, "if you are not accessing the class or instance anywhere in the function")
         
 
 xuLieInstance = XuLie('passed string', 123, 'another string')
@@ -52,3 +56,5 @@ print("we have sum up : ", XuLie.classCounter, "classes instance have been insta
 
 newXuLieInstance = XuLie.alternativeClassInstructor("sad@aaa@bbb")
 print("we have sum up : ", XuLie.classCounter, "classes instance have been instantiated")
+
+newXuLieInstance.thisIsAstaticMethod("static method is like: ")
